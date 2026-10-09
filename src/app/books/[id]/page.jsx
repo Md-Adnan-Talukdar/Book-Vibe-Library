@@ -1,17 +1,21 @@
 export const instant = false;
+import fs from 'fs';
+import path from 'path';
 import ReadButton from '@/components/bookDetails/ReadButton';
 import WishlistButton from '@/components/bookDetails/WishlistButton';
 import Image from 'next/image';
 import React from 'react';
 
-const getBooks = async () => {
-  const res = await fetch('http://localhost:3000/booksData.json', {
-    cache: 'no-store',
-  });
-  if (!res.ok) {
-    throw new Error('Failed to fetch books data');
+const getBooksData = () => {
+  try {
+    // public/booksData.json ফাইলের সঠিক Absolute Path তৈরি করে
+    const filePath = path.join(process.cwd(), 'public', 'booksData.json');
+    const jsonData = fs.readFileSync(filePath, 'utf-8');
+    return JSON.parse(jsonData);
+  } catch (error) {
+    console.error("Error reading booksData.json:", error);
+    return [];
   }
-  return res.json();
 };
 
 const Stars = ({ rating = 0 }) => {
@@ -32,7 +36,7 @@ const Stars = ({ rating = 0 }) => {
 const BookDetailsPage = async ({ params }) => {
   const { id } = await params;
 
-  const booksData = await getBooks();
+  const booksData = getBooksData();
   const book = booksData.find((book) => book.bookId === Number(id));
 
   if (!book) {

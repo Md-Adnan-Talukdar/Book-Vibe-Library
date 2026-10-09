@@ -1,23 +1,24 @@
+import fs from 'fs';
+import path from 'path';
 import BookCard from './BookCard';
 
-const getBooks = async () => {
- 
-  const res = await fetch('http://localhost:3000/booksData.json', {
-    cache: 'no-store', 
-  });
-
-  if (!res.ok) {
-    throw new Error('Failed to fetch books data');
+const getBooksData = () => {
+  try {
+   
+    const filePath = path.join(process.cwd(), 'public', 'booksData.json');
+    const jsonData = fs.readFileSync(filePath, 'utf-8');
+    return JSON.parse(jsonData);
+  } catch (error) {
+    console.error("Error reading booksData.json:", error);
+    return [];
   }
-
-  return res.json();
 };
 
 const Books = async () => {
-  const booksData = await getBooks();
+  const booksData = getBooksData();
 
   if (!booksData || booksData.length === 0) {
-    return <p className="text-center text-white">No books found!</p>;
+    return <p className="py-10 text-center text-white">No books found!</p>;
   }
 
   return (
