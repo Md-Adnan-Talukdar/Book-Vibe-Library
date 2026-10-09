@@ -1,9 +1,9 @@
+
 'use client';
 
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import logo from '@/assets/book-vibe-resources/assets/book.ico';
 import Image from 'next/image';
 
 const navItems = [
@@ -19,6 +19,7 @@ const Navbar = () => {
     <>
       {navItems.map((item) => {
         const isActive = pathname === item.href;
+
         return (
           <li key={item.href}>
             <Link
@@ -40,7 +41,6 @@ const Navbar = () => {
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-[#0a0c14]/80 backdrop-blur-xl">
       <div className="navbar container mx-auto px-4">
-        {/* Left: mobile menu + logo */}
         <div className="navbar-start">
           <div className="dropdown">
             <div
@@ -64,6 +64,7 @@ const Navbar = () => {
                 />
               </svg>
             </div>
+
             <ul
               tabIndex={-1}
               className="menu menu-sm dropdown-content z-10 mt-4 w-56 gap-1 rounded-2xl border border-white/10 bg-[#10131f] p-3 shadow-2xl shadow-black/60"
@@ -78,30 +79,30 @@ const Navbar = () => {
           >
             <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-amber-400/30 bg-amber-400/10 shadow-lg shadow-amber-500/20 transition duration-300 group-hover:rotate-6 group-hover:scale-110">
               <Image
-                src={logo}
+                src="/book.ico"
                 alt="Book Vibe Logo"
                 width={26}
                 height={26}
               />
             </span>
+
             <span className="bg-gradient-to-r from-amber-100 via-amber-300 to-orange-400 bg-clip-text text-2xl font-extrabold tracking-tight text-transparent">
               Book Vibe
             </span>
           </Link>
         </div>
 
-        {/* Center: desktop links */}
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal gap-2 rounded-full border border-white/10 bg-white/5 px-2 py-1.5">
             {links}
           </ul>
         </div>
 
-        {/* Right: auth buttons */}
         <div className="navbar-end gap-2">
           <button className="btn rounded-full border border-white/20 bg-transparent px-6 font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:border-amber-400/60 hover:bg-amber-400/10 hover:text-amber-300">
             Sign in
           </button>
+
           <button className="btn rounded-full border-0 bg-gradient-to-r from-amber-300 to-orange-500 px-6 font-bold text-[#1a1205] shadow-lg shadow-amber-500/30 transition duration-300 hover:-translate-y-0.5 hover:scale-105 hover:shadow-xl hover:shadow-orange-500/50">
             Sign up
           </button>

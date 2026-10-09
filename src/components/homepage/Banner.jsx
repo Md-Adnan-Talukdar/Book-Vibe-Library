@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import bannerImage from '@/assets/book-vibe-resources/assets/hero_img.jpg';
 
 const features = [
     { icon: '📖', label: 'Track reads' },
@@ -17,6 +16,7 @@ const Banner = () => {
                 <div className="pointer-events-none absolute -left-24 -top-24 h-80 w-80 animate-pulse rounded-full bg-amber-500/25 blur-3xl" />
                 <div className="pointer-events-none absolute -bottom-32 right-0 h-96 w-96 animate-pulse rounded-full bg-orange-600/20 blur-3xl" />
                 <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.06),transparent_60%)]" />
+
                 {/* soft dotted texture */}
                 <div className="pointer-events-none absolute inset-0 opacity-[0.07] [background-image:radial-gradient(#ffffff_1px,transparent_1px)] [background-size:26px_26px]" />
 
@@ -53,6 +53,7 @@ const Banner = () => {
                             >
                                 View The List
                             </Link>
+
                             <button className="btn btn-lg rounded-full border border-white/20 bg-white/5 px-8 font-semibold text-white transition duration-300 hover:-translate-y-1 hover:border-amber-400/50 hover:bg-amber-400/10 hover:text-amber-300">
                                 Learn more
                             </button>
@@ -82,8 +83,10 @@ const Banner = () => {
                         <div className="absolute inset-0 -translate-x-3 -translate-y-3 -rotate-6 rounded-3xl border-2 border-amber-300/40" />
 
                         <Image
-                            src={bannerImage}
-                            alt="Banner Image"
+                            src="/hero_img.jpg"
+                            alt="Book Vibe Banner"
+                            width={600}
+                            height={400}
                             priority
                             className="relative h-auto w-full -rotate-2 rounded-3xl object-cover shadow-2xl shadow-black/60 ring-4 ring-[#161a2b] transition-transform duration-500 hover:rotate-0 hover:scale-[1.03]"
                         />
